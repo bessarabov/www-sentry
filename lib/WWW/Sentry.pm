@@ -67,11 +67,26 @@ Sentry Interfaces could be also provided as %params, e.g.
         "subscription" => "basic"
     });
 
+List of supported Sentry Interfaces
 
-See also
+    exception
+    stacktrace
+    template
+    breadcrumbs
+    contexts
+    request
+    threads
+    user
+    debug_meta
+    repos
+    sdk
+
+=head1 SEE ALSO
 
 https://docs.sentry.io/clientdev/overview/#building-the-json-packet
+
 https://docs.sentry.io/clientdev/attributes/
+
 https://docs.sentry.io/clientdev/interfaces/
 
 
@@ -81,8 +96,6 @@ https://docs.sentry.io/clientdev/interfaces/
 use LWP::UserAgent;
 use MIME::Base64 'encode_base64';
 use Sys::Hostname;
-use Data::Dump qw( pp );
-use utf8;
 use POSIX;
 use JSON::XS;
 use Sub::Name;
@@ -98,7 +111,7 @@ BEGIN {
 };
 
 
-=head4 new
+=head2 new
 
 Constructor
 
@@ -139,14 +152,9 @@ sub new {
     bless $self, $class;
 }
 
-=head4 _send
 
-Send a message to Sentry server.
-Returns the id of inserted message or dies.
-
-
-
-=cut
+# Send a message to Sentry server.
+# Returns the id of inserted message or dies.
 
 sub _send {
     my ( $self, %params ) = @_;
