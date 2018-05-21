@@ -52,7 +52,7 @@ Sentry Interfaces could be also provided as %params, e.g.
     $sentry->warn ( 'msg', user =>  {
         "id" => "unique_id",
         "username" => "my_user",
-        "email" => "foo@example.com",
+        "email" => 'foo@example.com',
         "ip_address" => "127.0.0.1",
         "subscription" => "basic"
     });
